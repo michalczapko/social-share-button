@@ -25,8 +25,8 @@ module SocialShareButton
         if teaser[name_symbol]
           html << "<span class='teaser-#{name}'>#{teaser[name_symbol]}</span>"
         end
+        html << "</div>" # .name
       end
-      html << "</div>" # .name
       html << "</div>" # .social-share-button
       raw html.join("\n")
     end
