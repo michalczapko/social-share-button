@@ -23,7 +23,7 @@ module SocialShareButton
                                   :onclick => "return SocialShareButton.share(this);",
                                   :title => h(link_title)}.merge(extra_data).merge(special_data))
         if teaser[name_symbol]
-          html << "<span class='teaser-#{name}'>#{teaser[name_symbol]}</span>"
+          html << "<div class='teaser-#{name}'>#{teaser[name_symbol]}</div>"
         end
         html << "</div>" # .name
       end
