@@ -4,11 +4,14 @@ module SocialShareButton
     def social_share_button_tag(title = "", opts = {})
       extra_data = {}
       rel = opts[:rel]
+      teaser = opts[:teaser]
+
       html = []
       html << "<div class='social-share-button' data-title='#{h title}' data-img='#{opts[:image]}'"
       html << "data-url='#{opts[:url]}' data-desc='#{opts[:desc]}' data-popup='#{opts[:popup]}' data-via='#{opts[:via]}'>"
 
       SocialShareButton.config.allow_sites.each do |name|
+        name_symbol = name.to_sym
         extra_data = opts.select { |k, _| k.to_s.start_with?('data') } if name.eql?('tumblr')
         special_data = opts.select { |k, _| k.to_s.start_with?('data-' + name) }
 
@@ -18,6 +21,9 @@ module SocialShareButton
                                   :class => "social-share-button-#{name}",
                                   :onclick => "return SocialShareButton.share(this);",
                                   :title => h(link_title)}.merge(extra_data).merge(special_data))
+        if teaser[name_symbol]
+          html << "<span class='teaser-#{name}'>#{teaser[name_symbol]}</span>"
+        end
       end
       html << "</div>"
       raw html.join("\n")
