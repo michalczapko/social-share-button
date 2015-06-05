@@ -27,6 +27,7 @@ module SocialShareButton
         end
         html << "</div>" # .name
       end
+      html << "<span class='stretch'></span>"
       html << "</div>" # .social-share-button
       raw html.join("\n")
     end
